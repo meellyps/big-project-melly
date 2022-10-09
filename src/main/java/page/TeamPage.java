@@ -6,22 +6,28 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class TeamPage extends BasePage {
-    @FindBy(xpath = "//div[@class='GeneralSubNavBar_title__text__3UFWr indiana-scroll-container indiana-scroll-container--hide-scrollbars']/h1")
-    WebElement teamPageHeader;
     @FindBy(xpath = "//h1[.='Board']/ancestor::div[@class='BoxMenu_container__1flgD']")
     WebElement boardCard;
     @FindBy(xpath = "//div[@class='OverviewOptionButton_container__M-oKs']")
-    WebElement buttonOverview;
+    WebElement overviewButton;
     @FindBy(xpath = "//p[.='Board']/ancestor::div[@class='OverviewOptionPopUp_text__1pQoR']")
-    WebElement buttonBoard;
+    WebElement boardButton;
+    @FindBy(xpath = "//h1[.='Group Chat']/ancestor::div[@class='BoxMenu_container__1flgD']")
+    WebElement groupChatCard;
+    @FindBy(xpath = "//p[.='Group Chat']/ancestor::div[@class='OverviewOptionPopUp_text__1pQoR']")
+    WebElement groupChatButton;
+    @FindBy(xpath = "//h1[.='Schedule']/ancestor::div[@class='BoxMenu_container__1flgD']")
+    WebElement scheduleCard;
+    @FindBy(xpath = "//h1[.='Schedule']/ancestor::div[@class='BoxMenu_container__1flgD']")
+    WebElement scheduleButton;
 
     public TeamPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public TeamPage verifyPage(String expectedText) {
-        verifyElementText(teamPageHeader, expectedText);
+    public TeamPage verifyPage() {
+        verifyElementPresent(boardCard);
         return this;
     }
 
@@ -31,12 +37,31 @@ public class TeamPage extends BasePage {
     }
 
     public TeamPage clickOverviewButton() {
-        buttonOverview.click();
+        overviewButton.click();
         return this;
     }
 
     public BoardPage clickBoardButton() {
-        buttonBoard.click();
+        boardButton.click();
         return new BoardPage(driver);
+    }
+
+    public GroupChatPage clickGroupChatCard() {
+        groupChatCard.click();
+        return new GroupChatPage(driver);
+    }
+
+    public GroupChatPage clickGroupChatButton() {
+        groupChatButton.click();
+        return new GroupChatPage(driver);
+    }
+
+    public SchedulePage clickScheduleCard() {
+        scheduleCard.click();
+        return new SchedulePage(driver);
+    }
+    public SchedulePage clickScheduleButton() {
+        scheduleButton.click();
+        return new SchedulePage(driver);
     }
 }
