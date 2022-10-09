@@ -1,43 +1,89 @@
-@regression
+@regression @board
 Feature: board feature
 
   Background:
     Given user is on the home page
-    When user click team card
-    Then user should be navigated to team page
+    When user navigate to team page
 
-  @board_001
-  Scenario: user can navigate to board page using board icon
+  @positive @board_001
+  Scenario: verify user can navigate to board page using board card
     Given user is on the team page
-    When user click board card
+    When user select board card
     Then user should be navigated to board page
 
-  @board_002
-  Scenario: user can navigate to board page using overview option button
+  @positive @board_002
+  Scenario: verify user can navigate to board page using overview option button
     Given user is on the team page
-    When user click board in the overview option button
+    When user select board menu in the overview option button
     Then user should be navigated to board page
 
-  @board_003
-  Scenario: user can add list on board page
-    Given user click board card
-    When user create new list
+  @positive @board_003
+  Scenario: verify user can add list on board page
+    Given user is on the team page
+    When user select board card
+    And user create new list
     Then list should be successfully created
 
-  @board_004
-  Scenario: user can click list action menu
-    Given user click board card
-    When user click list action menu
+  @positive @board_004
+  Scenario: verify user can select list action menu
+    Given user is on the team page
+    When user select board card
+    And user select list action menu
     Then list action menu should be displayed
 
-  @board_005
-  Scenario: user can click list action menu
-    Given user click board card
-    When user click set as complete list from list action menu
+  @positive @board_005
+  Scenario: verify user can set as a complete list using list action menu
+    Given user is on the team page
+    When user select board card
+    And user select set as complete list from list action menu
     Then list should be set as complete
 
-  @board_006
-  Scenario: user can click list action menu
-    Given user click board card
-    When user click unset complete list from list action menu
+  @positive @board_006
+  Scenario: verify user can unset complete list using list action menu
+    Given user is on the team page
+    When user select board card
+    And user select unset complete list from list action menu
     Then list should be set as incomplete
+
+  @positive @board_007
+  Scenario: verify user can add card on board page
+    Given user is on the team page
+    When user select board card
+    And user create new card
+    Then card successfully created
+
+  @negative @board_008
+  Scenario: verify user can add card on board page and set as private, by clicking submit first then clicking private toggle
+    Given user is on the team page
+    When user select board card
+    And user create new card
+    And user set card as private
+    Then card successfully created as private
+
+  @positive @board_009
+  Scenario: verify user can add card on board page and set as private
+    Given user is on the team page
+    When user select board card
+    And user create new private card
+    Then card successfully created as private
+
+  @positive @board_011
+  Scenario: verify user can't create list with empty list name
+    Given user is on the team page
+    When user select board card
+    And user create new list with empty list name
+    Then user should see error message List name cannot be empty
+
+  @positive @board_012
+  Scenario: verify user can't create card with empty card name
+    Given user is on the team page
+    When user select board card
+    And user create new card with empty card name
+    Then user should see error message Card name cannot be empty
+
+  @positive @board_010
+  Scenario: verify user can archive list using list action menu
+    Given user is on the team page
+    When user select board card
+    And user archive the list
+    Then list successfully archived
