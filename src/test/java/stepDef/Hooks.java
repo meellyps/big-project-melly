@@ -13,7 +13,11 @@ import utils.CommonUtils;
 
 public class Hooks {
     public static WebDriver driver;
-    public static String homePageUrl = "https://staging.cicle.app/companies/61eba2c85080f47b25ddc8f8";
+//    ori
+//    public static String homePageUrl = "https://staging.cicle.app/companies/61eba2c85080f47b25ddc8f8"; big project
+
+    // test
+    public static String homePageUrl = "https://staging.cicle.app/companies/6340e40e9e89ca46703d8a82";
     public static String verifyHomePageText = "Home";
     public static String verifyTeamPageText = "QA-14-BP-B";
 
@@ -37,16 +41,9 @@ public class Hooks {
         homePage.goToHomePage(homePageUrl).verifyPage(verifyHomePageText);
     }
 
-    @When("user click team card")
-    public void userClickTeamCard() {
+    @When("user navigate to team page")
+    public void userNavigateToTeamPage() {
         HomePage homePage = new HomePage(driver);
         homePage.clickTeamCard();
-    }
-
-    @Then("user should be navigated to team page")
-    public void userShouldBeNavigatedToTeamPage() throws InterruptedException {
-        TeamPage teamPage = new TeamPage(driver);
-        Thread.sleep(1000);
-        teamPage.verifyPage(verifyTeamPageText);
     }
 }
