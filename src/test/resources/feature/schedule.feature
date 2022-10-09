@@ -1,40 +1,75 @@
-@regression @groupChat
+@regression @schedule
 
-Feature: group chat feature
+Feature: schedule feature
 
   Background:
     Given user is on the home page
     When user navigate to team page
 
-  @positive @groupChat_001
-  Scenario: verify user can navigate to group chat page using group chat card
+  @positive @schedule_001
+  Scenario: verify user can navigate to schedule page using schedule card
     Given user is on the team page
-    When user select group chat card
-    Then user should be navigated to group chat page
+    When user select schedule card
+    Then user should be navigated to schedule page
 
-  @positive @groupChat_002
-  Scenario: verify user can navigate to group chat using overview option button
+  @positive @schedule_002
+  Scenario: verify user can navigate to schedule using overview option button
     Given user is on the team page
-    When user select group chat menu in the overview option button
-    Then user should be navigated to group chat page
+    When user select schedule menu in the overview option button
+    Then user should be navigated to schedule page
 
-  @positive @groupChat_003
-  Scenario: verify user can send text message
+  @positive @schedule_003
+  Scenario: verify user can select create event button on the schedule menu
     Given user is on the team page
-    When user select group chat card
-    And send text message
-    Then user should see the text message that has been sent
+    When user select schedule card
+    And user select create event button
+    Then user should be navigated to create event page
 
-  @positive @groupChat_004
-  Scenario: verify user can delete message
+  @positive @schedule_004
+  Scenario: verify user can create event on the schedule menu
     Given user is on the team page
-    When user select group chat card
-    And user delete message
-    Then user should see the text message that has been deleted
+    When user select schedule card
+    And user create event
+    Then user should be successfully created event
 
-  @positive @groupChat_005
-  Scenario: verify user can send text message
+  @positive @schedule_005
+  Scenario: verify user can create private events
     Given user is on the team page
-    When user select group chat card
-    And send image massage
-#    Then user should see the image message that has been sent
+    When user select schedule card
+    And user create private event
+    Then user should be successfully created private event
+
+  @negative @schedule_006
+  Scenario: verify user can't create event with end date before start date
+    Given user is on the team page
+    When user select schedule card
+    And user create event with end date before start date
+    Then user should see error message Cannot choose end date time before start date time
+
+  @negative @schedule_007
+  Scenario: verify user can't create event with empty title
+    Given user is on the team page
+    When user select schedule card
+    And user create event with empty title
+    Then user should see error message Event title cannot be empty
+
+  @positive @schedule_008
+  Scenario: verify user can cancel create event
+    Given user is on the team page
+    When user select schedule card
+    And user cancel create event
+    Then user should be navigated to schedule page
+
+  @positive @schedule_009
+  Scenario: verify user can move calendar to specific month and year
+    Given user is on the team page
+    When user select schedule card
+    And user move calendar to December 2023
+    Then user should be move to December 2023
+
+  @positive @schedule_010
+  Scenario: verify user can create event using fill notes more than 200 characters
+    Given user is on the team page
+    When user select schedule card
+    And user create event with fill notes more than 500 characters
+    Then user should be successfully created event
