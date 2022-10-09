@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -66,6 +67,11 @@ public class BasePage {
         Assert.assertEquals(text, element.getText());
     }
 
+    public void verifyElementHref(WebElement element, String text) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        Assert.assertEquals(text, element.getAttribute("href"));
+    }
+
     public void verifyElementPresent(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
         Assert.assertEquals(true, element.isDisplayed());
@@ -82,8 +88,16 @@ public class BasePage {
         Assert.assertFalse(isInvisible);
         return this;
     }
+    public void waitInvisibility(By element) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
+    }
 
-    public void verifyElementNotPresent(WebElement element){
-        System.out.println(element.getSize());
+    public boolean isNotElementPresent(By locatorKey) {
+        try {
+            driver.findElement(locatorKey);
+            return false;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return true;
+        }
     }
 }
