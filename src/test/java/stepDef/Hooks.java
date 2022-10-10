@@ -3,12 +3,10 @@ package stepDef;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import page.HomePage;
-import page.TeamPage;
 import utils.CommonUtils;
 
 public class Hooks {
