@@ -3,7 +3,9 @@
 This big project perform automation testing on the cicle staging website **https://staging.cicle.app/**
 
 ## How to run?
-Navigate to **test/java/runner** open the **runner** file and **run the code**
+1. Navigate to **test/java/runner**
+2. Open the **runner** file
+3. **Run the code**
 
 ## Requirement
 
