@@ -4,12 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
 import page.BoardPage;
 import page.TeamPage;
 
 import static stepDef.Hooks.driver;
-import static stepDef.Hooks.verifyTeamPageText;
 
 public class BoardStepDef {
     private String verifyBoardPageText = "Kanban Board - QA-14-BP-B";

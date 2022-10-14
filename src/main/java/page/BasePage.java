@@ -26,22 +26,10 @@ public class BasePage {
         element.click();
     }
 
-    //Select
-    public void selectDropdown(WebElement element, String text) {
-        Select select = new Select(element);
-        select.selectByValue(text);
-    }
-
     //Write Text
     public void writeText(WebElement element, String text) {
         waitVisibility(element);
         element.sendKeys(text);
-    }
-
-    //Clear Text
-    public void clearText(WebElement element) {
-        waitVisibility(element);
-        element.clear();
     }
 
     //Read Text

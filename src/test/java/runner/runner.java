@@ -9,16 +9,16 @@ public class runner {
 
     @CucumberOptions(
             features = "src/test/resources/feature",
-            glue= {"stepDef"},
+            glue = {"stepDef"},
             plugin = {"pretty", "html:target/cucumber-report.html"},
-            tags = "@board_001 or @board_002"
+            tags = "@regression"
     )
     public static class run extends AbstractTestNGCucumberTests {
         @AfterSuite
         public void sendReportEmail() {
-            String[] args = new String[] {
+            String[] args = new String[]{
                     "mellypuspita21@gmail.com",
-                    "de.boyz99@gmail.com",
+                    "fakhri@cilsyfiolution.com,halo@cicle.app",
                     "Big Project Report - Melly",
                     "Big Project Report",
                     "D:\\adiladios\\project\\java\\big-project-melly\\target\\cucumber-report.html"
